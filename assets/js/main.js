@@ -1,5 +1,7 @@
-let app, app2;
 
+"use strict";
+
+let app, app2, app3, app4, app5, app6, app7;
 
     app = new Vue(
     {
@@ -7,11 +9,9 @@ let app, app2;
         data: 
         {
           message: 'Hello Vue!',
-          seen: true
         }
     })
 
-    app.seen = false;
 
 
     app2 = new Vue(
@@ -20,11 +20,92 @@ let app, app2;
             data: 
             {
               message: 'You visit this content in ' + new Date().getSeconds(),
-              seen: true
             }
-        })
+        }
+    )
+
+
+    let args  =
+    {
+        el: '#app-3',
+        data:
+        {
+            seen: false
+        }
+    }
+    app3 = new Vue(args)
+
     
-    app2.seen = false;
+
+    //app4.todos.push({ text: 'New item' })
+    app4 = new Vue(
+        {
+            el: '#app-4',
+            data:
+            {
+                todos: 
+                [
+                    { text: 'Learn JavaScript' },
+                    { text: 'Learn Vue' },
+                    { text: 'Build something awesome' }
+                ]
+            }
+        }
+    )
+
+
+    app5 = new Vue(
+        {
+            el: '#app-5',
+            data: 
+            {
+              message: 'Hello Vue.js!'
+            },
+            methods: 
+            {
+              reverseMessage: function () 
+              {
+                this.message = this.message.split('').reverse().join('')
+              }
+            }
+        }
+    )
+
+    app6 = new Vue(
+        {
+            el: '#app-6',
+            data: 
+            {
+                message: 'Hello Vue!'
+            }
+        }
+    )
+
+    Vue.component('todo-item', 
+        {
+            // The todo-item component now accepts a
+            // "prop", which is like a custom attribute.
+            // This prop is called todo.
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        }
+    )
+
+    app7 = new Vue(
+        {
+            
+            el: '#app-7',
+            data: 
+            {
+                groceryList: 
+                [
+                    { id: 0, text: 'Vegetables' },
+                    { id: 1, text: 'Cheese' },
+                    { id: 2, text: 'Whatever else humans are supposed to eat' }
+                ]
+            }
+        }
+    )
 
 
     document.querySelector("#app-2").addEventListener("mouseover", function()
